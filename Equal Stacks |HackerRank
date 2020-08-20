@@ -1,0 +1,37 @@
+#!/bin/python
+import sys
+
+def max_length(h1, h2, h3):
+    n1, n2, n3 = 0, 0, 0
+    for each in h1:
+        n1 = n1 + each
+    for each in h2:
+        n2 = n2 + each
+    for each in h3:
+        n3 = n3 + each
+    while n1 !=0 and n2 != 0 and n3 != 0 and (n1!=n2 or n2!=n3):
+        if max(n1, n2, n3) == n1:
+            n1 = n1 - h1[0]
+            h1.pop(0)
+        elif max(n1, n2, n3) == n2:
+            n2 = n2 - h2[0]
+            h2.pop(0)
+        else:
+            n3 = n3 - h3[0]
+            h3.pop(0)
+    else:
+        if n1==n2 and n2==n3:
+            return n1
+        else:
+            return 0
+    
+
+## taking input here
+
+n1,n2,n3 = input().strip().split(' ')
+n1,n2,n3 = [int(n1),int(n2),int(n3)]
+h1 = [int(h1_temp) for h1_temp in input().strip().split(' ')]
+h2 = [int(h2_temp) for h2_temp in input().strip().split(' ')]
+h3 = [int(h3_temp) for h3_temp in input().strip().split(' ')]
+##
+print(max_length(h1, h2, h3))
