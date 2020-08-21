@@ -1,0 +1,13 @@
+List1= [] 
+List2=[]
+for _ in range(int(input())):
+    val = list(map(int,input().split()))
+    if val[0] == 1:
+        List2.append(val[1])
+    elif val[0] == 2:
+        if not List1 :
+            while List2 : 
+                List1.append(List2.pop())
+        List1.pop()
+    else:
+        print(List1[-1] if List1 else List2[0])
