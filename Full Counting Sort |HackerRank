@@ -1,0 +1,9 @@
+n=int(input())
+l=[]
+for i in range(n):
+    a,b = input().split()
+    a=int(a)
+    l.append([a,i,b])
+r= sorted(l,key=lambda x:x[0])
+rs=[str(c) if b >n/2 -1 else '-' for a,b,c in r]
+print(' '.join(rs))
