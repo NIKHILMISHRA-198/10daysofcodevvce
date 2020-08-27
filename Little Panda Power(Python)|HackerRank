@@ -1,0 +1,54 @@
+#!/bin/python3
+
+import os
+import sys
+import math
+
+
+def egcd(a,b):
+    if b == 0:
+        return 1,0 
+    else:
+        q,r = divmod(a,b)
+        s, t = egcd(b, r)
+        return t, s - q * t
+
+
+def modinv(z, n):
+    return mod(egcd(z,n)[0],n)
+
+def mod(n, m):
+    return (n % m + m) % m
+
+
+
+# Complete the solve function below.
+def solve(b, e, m):
+    r=1
+    while e>0:
+        if e%2==1:
+            r=(r*b)%m
+        b=(b*b)%m
+        e>>=1
+    return r
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        abx = input().split()
+
+        a = int(abx[0])
+
+        b = int(abx[1])
+
+        x = int(abx[2])
+        if b>0:
+            result = solve(a, b, x)
+        else:
+            result=solve(modinv(a, x), -b, x)
+            result=math.ceil(result)
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
